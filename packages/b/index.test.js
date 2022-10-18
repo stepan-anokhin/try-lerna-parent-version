@@ -1,5 +1,5 @@
 const lib = require("./index")
 
 test("b", () => {
-  expect(lib.b()).toEqual("b-updated")
+  expect(lib.b()).toEqual("b-updated-2")
 })
