@@ -133,3 +133,16 @@ Initialize Lerna:
 ```shell
 npx lerna init
 ```
+
+Visualize Project:
+```shell
+npx nx graph
+```
+
+[Bootstrap](https://lerna.js.org/docs/getting-started#bootstrapping-projects) projects:
+```shell
+npx lerna bootstrap
+```
+
+This did nothing according to `git status`...
+
