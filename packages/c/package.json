@@ -1,0 +1,14 @@
+{
+    "name": "@project/c",
+    "version": "1.0.0",
+    "main": "index.js",
+    "description": "Library C",
+    "author": "Stepan Anokhin",
+    "license": "ISC",
+    "scripts": {
+        "test": "jest"
+    },
+    "devDependencies": {
+        "jest": "^29.2.0"
+    }
+}
