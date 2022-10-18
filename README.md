@@ -144,5 +144,6 @@ npx nx graph
 npx lerna bootstrap
 ```
 
-This did nothing according to `git status`...
+This added sym-links to `a`, `b` and `c` libraries to the `packages/parent/node_modules/` directory.
+
 
