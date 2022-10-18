@@ -146,4 +146,7 @@ npx lerna bootstrap
 
 This added sym-links to `a`, `b` and `c` libraries to the `packages/parent/node_modules/` directory.
 
-
+Test all projects:
+```shell
+npx lerna run test
+```
