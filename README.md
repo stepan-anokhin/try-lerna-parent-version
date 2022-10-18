@@ -215,6 +215,8 @@ npx lerna publish from-package --yes
 
 ## Update a Child Package
 
+### Change Libraries
+
 Change the `@project/a` library. 
 
 `./index.js`:
@@ -241,3 +243,90 @@ message for a breaking change in the `@project/a` library:
 git commit -m 'feat(a)!: Add breaking change to the @project/a package'
 ```
 
+### Publish a Beta-Release
+
+Now let's create beta-release of our changes. 
+```shell
+npx lerna version --no-changelog --conventional-commits --conventional-prerelease --preid beta --yes
+```
+
+This has created a new commit and version tags:
+```
+2022-10-18 13:03 +0700 Stepan Anokhin o <@project/a@1.0.2-beta.0> <@project/parent@1.0.2-beta.0> Publish
+```
+```diff
+diff --git a/packages/a/package.json b/packages/a/package.json
+ {
+     "name": "@project/a",
+-    "version": "1.0.1",
++    "version": "1.0.2-beta.0",
+     "main": "index.js",
+     "description": "Library A",
+     "author": "Stepan Anokhin",
+diff --git a/packages/parent/package.json b/packages/parent/package.json
+ {
+     "name": "@project/parent",
+-    "version": "1.0.1",
++    "version": "1.0.2-beta.0",
+     "description": "Parent package, required to group the other packages into a single dependency.",
+     "author": "Stepan Anokhin",
+     "license": "ISC",
+     "dependencies": {
+-        "@project/a": "^1.0.1",
++        "@project/a": "^1.0.2-beta.0",
+         "@project/b": "^1.0.1",
+         "@project/c": "^1.0.1"
+     }
+```
+
+Let's publish this `*-beta` versions:
+```shell
+npx lerna publish from-package --dist-tag next --yes
+```
+
+Results (from local the [registry](http://0.0.0.0:4873/-/web/detail/@project/parent/v/1.0.2-beta.0)):
+![alt text](./docs/beta-release.png "Title")
+
+### Publish GA-Release
+
+Graduate version from `*-beta` to GA (note the [--conventional-graduate](https://github.com/lerna/lerna/tree/main/commands/version#--conventional-graduate) flag):
+```shell
+npx lerna version --no-changelog --conventional-commits --conventional-graduate --yes
+```
+
+This has created a new commit and version tags:
+```
+2022-10-18 13:26 +0700 Stepan Anokhin o [master] {origin/master} <@project/a@1.0.2> <@project/parent@1.0.2> Publish
+```
+```diff
+diff --git a/packages/a/package.json b/packages/a/package.json
+ {
+     "name": "@project/a",
+-    "version": "1.0.2-beta.0",
++    "version": "1.0.2",
+     "main": "index.js",
+     "description": "Library A",
+     "author": "Stepan Anokhin",
+diff --git a/packages/parent/package.json b/packages/parent/package.json
+ {
+     "name": "@project/parent",
+-    "version": "1.0.2-beta.0",
++    "version": "1.0.2",
+     "description": "Parent package, required to group the other packages into a single dependency.",
+     "author": "Stepan Anokhin",
+     "license": "ISC",
+     "dependencies": {
+-        "@project/a": "^1.0.2-beta.0",
++        "@project/a": "^1.0.2",
+         "@project/b": "^1.0.1",
+         "@project/c": "^1.0.1"
+     }
+```
+
+Now let's publish GA-release packages:
+```shell
+npx lerna publish from-package --yes
+```
+
+Results (from local the [registry](http://0.0.0.0:4873/-/web/detail/@project/parent/v/1.0.2-beta.0)):
+![alt text](./docs/ga-release.png "Title")
