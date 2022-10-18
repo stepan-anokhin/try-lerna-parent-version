@@ -150,3 +150,17 @@ Test all projects:
 ```shell
 npx lerna run test
 ```
+
+Publish packages:
+```shell
+npx lerna publish from-package --yes
+```
+```
+...
+Successfully published:
+ - @project/a@1.0.0
+ - @project/b@1.0.0
+ - @project/c@1.0.0
+ - @project/parent@1.0.0
+lerna success published 4 packages
+```
