@@ -1,0 +1,20 @@
+{
+  "packages": [
+    "packages/*"
+  ],
+  "command": {
+    "bootstrap": {
+      "registry": "http://localhost:4873"
+    },
+    "version": {
+      "registry": "http://localhost:4873"
+    },
+    "publish": {
+      "registry": "http://localhost:4873"
+    }
+  },
+  "version": "independent",
+  "granularPathspec": false,
+  "$schema": "node_modules/lerna/schemas/lerna-schema.json",
+  "useWorkspaces": false
+}
