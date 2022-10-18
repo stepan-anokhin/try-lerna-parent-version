@@ -75,3 +75,10 @@ Finally, create an empty parent package, which depends on the libs in `packages/
     }
 }
 ```
+
+## Set up Lerna
+
+Install Lerna:
+```shell
+npm install --save-dev lerna
+```
