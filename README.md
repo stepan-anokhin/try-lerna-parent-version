@@ -164,3 +164,52 @@ Successfully published:
  - @project/parent@1.0.0
 lerna success published 4 packages
 ```
+
+Bump version:
+```shell
+npx lerna version
+```
+```
+lerna notice cli v6.0.1
+lerna info versioning independent
+lerna info Assuming all packages changed
+? Select a new version for @project/a (currently 1.0.0) Patch (1.0.1)
+? Select a new version for @project/b (currently 1.0.0) Patch (1.0.1)
+? Select a new version for @project/c (currently 1.0.0) Patch (1.0.1)
+? Select a new version for @project/parent (currently 1.0.0) Patch (1.0.1)
+
+Changes:
+ - @project/a: 1.0.0 => 1.0.1
+ - @project/b: 1.0.0 => 1.0.1
+ - @project/c: 1.0.0 => 1.0.1
+ - @project/parent: 1.0.0 => 1.0.1
+
+? Are you sure you want to create these versions? Yes
+lerna info execute Skipping releases
+lerna info git Pushing tags...
+lerna success version finished
+```
+
+This command created a new commit:
+```
+2022-10-18 11:38 +0700 Stepan Anokhin o [master] {origin/master} <@project/a@1.0.1> <@project/b@1.0.1> <@project/c@1.0.1> <@project/parent@1.0.1> Publish
+```
+
+In which it changed the `@project/parent` dependencies versions to the new ones:
+```json
+{
+    "name": "@project/parent",
+    "...": "...",
+    "dependencies": {
+        "@project/a": "^1.0.1",
+        "@project/b": "^1.0.1",
+        "@project/c": "^1.0.1"
+    }
+}
+```
+
+Now let's publish updated versions again (all changes must be committed):
+```shell
+npx lerna publish from-package --yes
+```
+
