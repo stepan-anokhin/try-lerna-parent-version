@@ -213,3 +213,31 @@ Now let's publish updated versions again (all changes must be committed):
 npx lerna publish from-package --yes
 ```
 
+## Update a Child Package
+
+Change the `@project/a` library. 
+
+`./index.js`:
+```diff
+exports.a = function a() {
+-  return "a"
++  return "a-updated"
+}
+```
+
+`./index.test.js`:
+```diff
+const lib = require("./index")
+
+test("a", () => {
+-  expect(lib.a()).toEqual("a")
++  expect(lib.a()).toEqual("a-updated")
+})
+```
+
+Use [conventional commit](https://www.conventionalcommits.org/en/v1.0.0/#commit-message-with-scope-and--to-draw-attention-to-breaking-change)
+message for a breaking change in the `@project/a` library:
+```shell
+git commit -m 'feat(a)!: Add breaking change to the @project/a package'
+```
+
