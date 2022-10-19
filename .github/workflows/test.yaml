@@ -15,6 +15,7 @@ jobs:
       - name: "Setup npm"
         run: |
           npm install
+          npx lerna bootstrap
           npx lerna exec npm install
       - name: "Run tests"
         run: npx lerna run test
