@@ -1,3 +1,3 @@
 exports.b = function b() {
-  return "b-updated-5"
+  return "b-updated-6"
 }
