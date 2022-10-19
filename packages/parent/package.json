@@ -1,11 +1,11 @@
 {
     "name": "@project/parent",
-    "version": "1.0.5",
+    "version": "1.0.6-beta.0",
     "description": "Parent package, required to group the other packages into a single dependency.",
     "author": "Stepan Anokhin",
     "license": "ISC",
     "dependencies": {
-        "@project/a": "^1.0.3",
+        "@project/a": "^1.0.4-beta.0",
         "@project/b": "^1.0.3",
         "@project/c": "^1.0.2"
     }
