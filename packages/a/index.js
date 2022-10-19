@@ -1,3 +1,3 @@
 exports.a = function a() {
-  return "a-updated-3"
+  return "a-updated-4"
 }
