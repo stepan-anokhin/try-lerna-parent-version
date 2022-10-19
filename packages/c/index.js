@@ -1,3 +1,3 @@
 exports.c = function c() {
-  return "c-update-2"
+  return "c-update-3"
 }
