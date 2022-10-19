@@ -9,8 +9,10 @@
     "lerna": "^6.0.1"
   },
   "scripts": {
+    "version:alpha": "lerna version --no-changelog --conventional-commits --conventional-prerelease --preid alpha --yes",
     "version:beta": "lerna version --no-changelog --conventional-commits --conventional-prerelease --preid beta --yes",
     "version:ga": "lerna version --no-changelog --conventional-commits --conventional-graduate --yes",
+    "publish:alpha": "lerna publish from-package --dist-tag dev --yes",
     "publish:beta": "lerna publish from-package --dist-tag next --yes",
     "publish:ga": "lerna publish from-package --yes",
     "release:beta": "npm run version:beta && npm run publish:beta",
