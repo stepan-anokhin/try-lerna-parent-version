@@ -1,6 +1,6 @@
 {
     "name": "@project/a",
-    "version": "1.0.9",
+    "version": "2.0.0",
     "main": "index.js",
     "description": "Library A",
     "author": "Stepan Anokhin",
