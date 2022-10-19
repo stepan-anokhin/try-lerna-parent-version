@@ -1,6 +1,6 @@
 {
     "name": "@project/c",
-    "version": "1.0.3-beta.0",
+    "version": "1.0.3",
     "main": "index.js",
     "description": "Library C",
     "author": "Stepan Anokhin",
