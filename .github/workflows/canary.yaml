@@ -2,10 +2,6 @@ name: Canary Release
 on:
   pull_request:
     types: [ opened, synchronize, labeled ]
-    branches:
-      - !beta
-      - !staging
-      - !master
 
 jobs:
   publish:
