@@ -30,6 +30,7 @@
     "publish:ga": "lerna publish from-package --yes",
     "release:ga": "npm run version:ga && npm run publish:ga",
 
-    "release:canary": "./scripts/canary-release.sh"
+    "release:canary": "./scripts/canary-release.sh",
+    "canary:clean": "./scripts/canary-clean.sh"
   }
 }
