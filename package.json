@@ -11,15 +11,17 @@
   "scripts": {
     "registry:start": "./scripts/run-verdaccio.sh",
     "registry:stop": "sudo docker stop verdaccio",
+    "registry:clean": "npm run registry:stop && sudo rm -rf ./registry",
     "registry": "npm run registry:start",
 
-    "version:alpha": "lerna version --no-changelog --conventional-commits --conventional-prerelease --preid alpha --yes",
+    "git:clean": "./scripts/git-clean.sh",
+    "clean": "npm run registry:clean && npm run git:clean",
+    "reset": "npm run clean && npm run registry",
+
     "version:beta": "lerna version --no-changelog --conventional-commits --conventional-prerelease --no-push --preid beta --yes",
     "version:ga": "lerna version --no-changelog --conventional-commits --conventional-graduate --yes",
-    "publish:alpha": "lerna publish from-package --dist-tag dev --yes",
     "publish:beta": "lerna publish from-package --dist-tag next --yes",
     "publish:ga": "lerna publish from-package --yes",
-    "release:alpha": "npm run version:alpha && npm run publish:alpha",
     "release:beta": "npm run version:beta && npm run publish:beta",
     "release:ga": "npm run version:ga && npm run publish:ga"
   }
