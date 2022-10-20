@@ -28,6 +28,8 @@
 
     "version:ga": "lerna version --no-changelog --conventional-commits --conventional-graduate --yes",
     "publish:ga": "lerna publish from-package --yes",
-    "release:ga": "npm run version:ga && npm run publish:ga"
+    "release:ga": "npm run version:ga && npm run publish:ga",
+
+    "publish:canary": "lerna publish from-package --canary --preid "
   }
 }
