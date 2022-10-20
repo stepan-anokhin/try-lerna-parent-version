@@ -30,6 +30,6 @@
     "publish:ga": "lerna publish from-package --yes",
     "release:ga": "npm run version:ga && npm run publish:ga",
 
-    "publish:canary": "lerna publish from-package --canary --preid "
+    "publish:canary": "lerna publish from-package --canary --preid $(git rev-parse --abbrev-ref HEAD) --dist-tag $(git rev-parse --abbrev-ref HEAD)"
   }
 }
