@@ -13,4 +13,5 @@ jobs:
         with:
           fetch-depth: 0
       - name: "Run tests"
-        run: echo SUCCESS on ${{ github.ref }}
+        run: |
+          echo SUCCESS on ${{ github.ref_name }}
