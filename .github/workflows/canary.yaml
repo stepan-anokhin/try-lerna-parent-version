@@ -1,0 +1,16 @@
+name: Canary Release
+on:
+  pull_request:
+    types: [ opened, synchronize, labeled ]
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    if: (github.ref_name != 'master' && github.ref_name != 'staging' && github.ref_name != 'beta') && ((github.event.action == 'labeled' && github.event.label.name == 'canary') || contains(github.event.pull_request.labels.*.name, 'canary'))
+
+    steps:
+      - name: Imitate Canary Release
+        uses: actions/github-script@v6
+        with:
+          script: |
+            console.log(context);
