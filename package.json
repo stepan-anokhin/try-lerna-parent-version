@@ -22,9 +22,10 @@
     "clean": "npm run registry:clean && npm run git:clean",
     "reset": "npm run registry:reset && npm run git:reset",
 
+    "prepare:beta": "node ./scripts/restore-versions.js next http://localhost:4873 && ./scripts/dummy-commit.sh 'Restore published pre-release versions'",
     "version:beta": "lerna version --no-changelog --conventional-commits --conventional-prerelease --no-git-tag-version --no-push --preid beta --yes",
     "publish:beta": "lerna publish from-package --dist-tag next --yes",
-    "release:beta": "npm run version:beta && npm run publish:beta",
+    "release:beta": "npm run prepare:beta && npm run version:beta && npm run publish:beta",
 
     "version:ga": "lerna version --no-changelog --conventional-commits --conventional-graduate --yes",
     "publish:ga": "lerna publish from-package --yes",
