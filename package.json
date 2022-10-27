@@ -23,7 +23,7 @@
     "reset": "npm run registry:reset && npm run git:reset",
 
     "prepare:beta": "node ./scripts/restore-versions.js next http://localhost:4873 && ./scripts/dummy-commit.sh 'Restore published pre-release versions'",
-    "version:beta": "lerna version --no-changelog --conventional-commits --conventional-prerelease --no-push --preid beta --force-git-tag --yes",
+    "version:beta": "lerna version --no-changelog --conventional-commits --conventional-prerelease --no-push --include-merged-tags --preid beta --force-git-tag --yes",
     "publish:beta": "lerna publish from-package --dist-tag next --yes",
     "release:beta": "npm run prepare:beta && npm run version:beta && npm run publish:beta",
 
