@@ -1,14 +1,14 @@
 {
-    "name": "@project/new",
-    "version": "0.0.0",
-    "main": "index.js",
-    "description": "Library New. Update 0.",
-    "author": "Stepan Anokhin",
-    "license": "ISC",
-    "scripts": {
-        "test": "jest"
-    },
-    "devDependencies": {
-        "jest": "^29.2.0"
-    }
+  "name": "@project/new",
+  "version": "0.0.1",
+  "main": "index.js",
+  "description": "Library New. Update 0.",
+  "author": "Stepan Anokhin",
+  "license": "ISC",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "jest": "^29.2.0"
+  }
 }
