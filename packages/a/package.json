@@ -2,7 +2,7 @@
   "name": "@project/a",
   "version": "3.0.2",
   "main": "index.js",
-  "description": "Library A. Update 0.",
+  "description": "Library A. Update 1.",
   "author": "Stepan Anokhin",
   "license": "ISC",
   "scripts": {
