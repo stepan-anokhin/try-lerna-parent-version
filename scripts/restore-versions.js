@@ -50,7 +50,7 @@ function getPreVersion(pkg, options = {}) {
       encoding: "utf-8",
     });
   } catch (error) {
-    if (error.stderr.includes("npm ERR! code E404")) {
+    if (error.stderr?.includes("npm ERR! code E404")) {
       console.log("New package:", pkg.name);
     } else {
       throw error;
