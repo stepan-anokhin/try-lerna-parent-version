@@ -6,7 +6,9 @@
   "author": "Stepan Anokhin",
   "license": "ISC",
   "devDependencies": {
-    "lerna": "^6.0.1"
+    "lerna": "^6.0.1",
+    "prettier": "^2.7.1",
+    "semver": "^7.3.8"
   },
   "scripts": {
     "registry:start": "./scripts/run-verdaccio.sh",
@@ -14,23 +16,18 @@
     "registry": "npm run registry:start",
     "registry:clean": "npm run registry:stop && sudo rm -rf ./registry",
     "registry:reset": "npm run registry:clean && npm run registry",
-
     "git:clean": "./scripts/git-clean.sh",
     "git:staging": "./scripts/git-make-staging.sh",
     "git:reset": "npm run git:clean && npm run git:staging",
-
     "clean": "npm run registry:clean && npm run git:clean",
     "reset": "npm run registry:reset && npm run git:reset",
-
     "prepare:next": "node ./scripts/restore-versions.js next http://localhost:4873 && ./scripts/dummy-commit.sh 'Restore published pre-release versions'",
     "version:next": "lerna version --no-changelog --conventional-commits --conventional-prerelease --no-push --include-merged-tags --preid next --force-git-tag --yes",
     "publish:next": "lerna publish from-package --dist-tag next --yes",
     "release:next": "npm run prepare:next && npm run version:next && npm run publish:next",
-
     "version:ga": "lerna version --no-changelog --conventional-commits --conventional-graduate --yes",
     "publish:ga": "lerna publish from-package --yes",
     "release:ga": "npm run version:ga && npm run publish:ga",
-
     "release:canary": "./scripts/canary-release.sh",
     "canary:clean": "./scripts/canary-clean.sh"
   }

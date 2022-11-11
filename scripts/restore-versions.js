@@ -76,6 +76,15 @@ function readPackageJSON(pkg) {
 }
 
 /**
+ * Write `package.json` file of the given package.
+ */
+function writePackageJSON(pkg, manifest) {
+  const manifestPath = path.join(pkg.location, "package.json");
+  const manifestText = JSON.stringify(manifest);
+  fs.writeFileSync(manifestPath, manifestText, { encoding: "utf-8" });
+}
+
+/**
  * Set a new package version in its `package.json` manifest.
  */
 function setVersion(pkg, newVersion) {
@@ -88,31 +97,37 @@ function setVersion(pkg, newVersion) {
 /**
  * Repair dependencies on packages with restored pre-release versions.
  */
-function repairDependencies(parent, updated, registry) {
+function repairDependencies(parent, updatedPackages) {
   const manifest = readPackageJSON(parent);
+  if (!manifest.dependencies) {
+    return;
+  }
+
   let repaired = false;
-  for (const child of updated) {
-    if (!manifest.dependencies || !manifest.dependencies[child.name]) {
+  for (const childPackage of updatedPackages) {
+    if (!manifest.dependencies[childPackage.name]) {
       continue;
     }
-    const dependencyVersion = manifest.dependencies[child.name];
-    if (semver.satisfies(child.version, dependencyVersion)) {
-      // This is possible after `npx lerna bootstrap`.
-      // The package-lock.json should also be correct since
-      // we are repairing packages in topological order.
-      execSync(
-        `npm install --save ${child.name}@^${child.preVersion} --registry ${registry}`,
-        { cwd: parent.location }
-      );
+    const dependencyVersion = manifest.dependencies[childPackage.name];
+    if (semver.satisfies(childPackage.version, dependencyVersion)) {
+      // Since we don't use `package-lock.json` files, we can simply
+      // update dependency versions in `package.json`.
+      // We can also ignore changes in `package.json` attributes ordering,
+      // as these will not be pushed.
+      manifest.dependencies[childPackage.name] = childPackage.preVersion;
       repaired = true;
     } else {
-      console.error({ parent, child, message: "Dependency version mismatch!" });
+      console.error({
+        parent,
+        child: childPackage,
+        message: "Dependency version mismatch!",
+      });
     }
   }
   if (repaired) {
-    const repairedManifest = readPackageJSON(parent);
+    writePackageJSON(parent, manifest);
     console.log(`Repaired dependencies for ${parent.name}:`);
-    console.log(repairedManifest.dependencies);
+    console.log(manifest.dependencies);
   }
 }
 
@@ -149,7 +164,7 @@ function restorePreReleaseVersions(distTag, registry) {
 
   // Repair mutual dependencies
   for (const pkg of listPackages()) {
-    repairDependencies(pkg, restoreList, registry);
+    repairDependencies(pkg, restoreList);
   }
 }
 
